@@ -16,7 +16,6 @@ import { Img } from "../UI/Img";
 import { Text } from "../UI/Text";
 import { labelsColors } from "../../data/data";
 import MaskedInput from "react-text-mask";
-import { schema } from './validations/eventModal';
 
 export function EventModal() {
     const {
@@ -40,7 +39,25 @@ export function EventModal() {
     const [showInvalidCityMessage, setShowInvalidCityMessage] = useState(false);
     const [showInvalidTimeMessage, setShowInvalidTimeMessage] = useState(false);
 
-    function validateFormFields() {
+    function formatTimeText(tm: string | undefined, trn: string | undefined) {
+        if (!tm?.includes('AM') && !tm?.includes('PM')) {
+            return `${tm} ${trn}`;
+        }
+
+        if (tm?.includes('AM') && trn === 'PM') {
+            return tm?.replace('AM', trn);
+        }
+        
+        if (tm?.includes('PM') && trn === 'AM') {
+            return tm?.replace('PM', trn);
+        }
+        
+        return tm;
+    }
+
+    function handleSubmit(e: any) {
+        e.preventDefault();
+
         if (title === '') {
             setShowInvalidTitleMessage(true);
             return;
@@ -68,28 +85,6 @@ export function EventModal() {
         } else {
             setShowInvalidTimeMessage(false);
         }
-    }
-
-    function formatTimeText(tm: string | undefined, trn: string | undefined) {
-        if (!tm?.includes('AM') && !tm?.includes('PM')) {
-            return `${tm} ${trn}`;
-        }
-
-        if (tm?.includes('AM') && trn === 'PM') {
-            return tm?.replace('AM', trn);
-        }
-        
-        if (tm?.includes('PM') && trn === 'AM') {
-            return tm?.replace('PM', trn);
-        }
-        
-        return tm;
-    }
-
-    async function handleSubmit(e: any) {
-        e.preventDefault();
-
-        validateFormFields();
 
         const calendarEvent = {
             title,
@@ -100,10 +95,6 @@ export function EventModal() {
             city,
             time: formatTimeText(time, turn)
         }
-
-        const isValid = await schema.isValid(calendarEvent);
-
-        console.log(isValid)
 
         if (selectedEvent) {
             dispatchCalEvent({ type: 'update', payload: calendarEvent });
@@ -205,7 +196,7 @@ export function EventModal() {
                                 placeholder="Add City" 
                                 inputMode="text"
                                 required
-                                maxLength={15}
+                                maxLength={20}
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             />                            

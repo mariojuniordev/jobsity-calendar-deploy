@@ -27,7 +27,7 @@ export function WeatherSearcher() {
 
     useEffect(() => {
         apiVisualCrossing.get(
-            `/${city}/next30days?unitGroup=metric&key=KCHN78GVN2T5ACY7V4K5N9AA9&contentType=json`
+            `/${city}/next30days?unitGroup=metric&key=QJ54JSMNYUT76FMBQF773TUQM&contentType=json`
         ).then(response => setWeatherData(response?.data))
     }, [city]);
 

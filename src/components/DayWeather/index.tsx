@@ -7,13 +7,12 @@ import { Text } from "../UI/Text";
 
 export function DayWeather({ city, date }: DayWeatherProps) {
     const [forecast, setForecast] = useState<WeatherData | null>(null);
-    /* console.log(`DATE: ${dayjs()}, CITY: ${city}`) */
 
     useEffect(() => {
         if (date) {
             if (dayjs().format('YYYY-MM-DD') < date) {
                 apiVisualCrossing.get(
-                    `/${city}/next30days?unitGroup=metric&key=KCHN78GVN2T5ACY7V4K5N9AA9&contentType=json`
+                    `/${city}/next30days?unitGroup=metric&key=QJ54JSMNYUT76FMBQF773TUQM&contentType=json`
                 ).then(response => setForecast(response?.data))
             }
         }
@@ -39,11 +38,14 @@ export function DayWeather({ city, date }: DayWeatherProps) {
     return (
         <Text                             
             variant="h5"
-            color="var(--current-line)" 
+            color="var(--white)" 
+            p="5px"
+            borderRadius="5px"
             textAlign="center"
             fontWeight={'bold'}
+            backgroundColor="var(--current-line)"
         >
-            { `${forecastByDay?.dayCondition?.toLocaleUpperCase()} ${forecastByDay?.dayTemp}` }
+            { `${forecastByDay?.dayCondition?.toLocaleUpperCase()} ${forecastByDay?.dayTemp} °C` }
         </Text>
     )
 }
