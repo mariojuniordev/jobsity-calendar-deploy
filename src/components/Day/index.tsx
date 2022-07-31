@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../context/GlobalContext/GlobalContext";
 import { DayProps } from "../../dtos/day";
 import { DayEvent } from "../../dtos/events";
+import { DayWeather } from "../DayWeather";
 import { Flex } from "../UI/Flex";
 import { Text } from "../UI/Text";
 import { Container } from "./style";
@@ -52,28 +53,38 @@ export function Day({ day }: DayProps) {
                     </Text>
                 </Flex>
             </Flex>
-            <Flex alignItems="center" justifyContent="center"  flexDirection="column">
-                {dayEvents.map((evt, index) => 
-                    <Text 
-                        onClick={() => setSelectedEvent(evt)}
-                        key={index} 
-                        variant="h5"
-                        color="var(--current-line)" 
-                        backgroundColor={evt.label}
-                        p="1px 4px 1px 4px"
-                        mt="2px"
-                        width="100%"
-                        textAlign="center"
-                        fontWeight={'bold'}
-                    >
-                        { evt.title }
-                        <br/>
-                        { evt.time }
-                        <br/>
-                        { evt.city }
-                    </Text>
-                )}
-            </Flex>
+            {dayEvents.map((evt, index) =>
+                <Flex 
+                    onClick={() => setSelectedEvent(evt)}
+                    key={index} 
+                    backgroundColor={evt.label}
+                    alignItems="center" 
+                    justifyContent="center"  
+                    flexDirection="column"
+                    p="1px 4px 1px 4px"
+                    width="100%"
+                    mt="2px"
+                >
+                        <Text 
+                            variant="h5"
+                            color="var(--background)" 
+                            textAlign="center"
+                            fontWeight={'bold'}
+                        >
+                            { evt.title }
+                            <br/>
+                            { evt.time }
+                            <br/>
+                            { evt.city }
+                        </Text>
+
+                        <DayWeather 
+                            city={ evt.city } 
+                            date={ dayjs(evt.day).format('YYYY-MM-DD') }
+                        />
+                </Flex>
+            )}
+
         </Container>
     )
 }

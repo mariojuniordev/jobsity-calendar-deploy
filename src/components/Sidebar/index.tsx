@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { apiVisualCrossing } from "../../services/apiVisualCrossing";
 import { CreateEventButton } from "../CreateEventButton";
 import { MiniCalendar } from "../MiniCalendar";
 import { Today } from "../Today";

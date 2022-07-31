@@ -42,8 +42,8 @@ export const InfoContainer = styled.div`
         padding-bottom: 2px;
         border: 0;
         width: 100%;
-        border-bottom: 1px solid var(--white);
         margin-top: 16px;
+        border-bottom: 1px solid var(--white);
         color: var(--white);
 
         ::placeholder {
@@ -56,6 +56,16 @@ export const InfoContainer = styled.div`
         }
 
 
+    }
+
+    select {
+        background-color: var(--current-line);
+        color: var(--white);
+        border: 1px solid var(--white);
+        height: 25px;
+        margin-top: 16px;
+        margin-bottom: -1px;
+        border-radius: 5px 5px 0px 0px;
     }
 `
 

@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
+import { Oval } from "react-loader-spinner";
 import { tempType, WeatherData } from "../../dtos/weather";
 import { apiIpInfo } from "../../services/apiIpInfo";
 import { apiVisualCrossing } from "../../services/apiVisualCrossing";
 import { convertFromCelsiusToFarenheit } from "../../utils/tempConversion";
 import { Flex } from "../UI/Flex";
-import { Heading } from "../UI/Heading";
 import { Text } from "../UI/Text";
 import { ConversionButton } from "./style";
 
 export function WeatherSearcher() {
-    const [city, setCity] = useState('New York');    
+    const [city, setCity] = useState<any>('New York');    
     const [tempUnit, setTempUnit] = useState<'celsius' | 'farenheit'>('celsius');
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
@@ -53,9 +53,18 @@ export function WeatherSearcher() {
 
     if (!weatherData) {
         return (
-            <Heading variant="h5" color="var(--white)">
-                Loading Weather Data...
-            </Heading>
+            <Flex flexDirection="column" alignItems="center"  mt="16px">
+                <Oval 
+                    height = "30"
+                    width = "30"
+                    color = 'var(--gray-blue)'
+                    secondaryColor="var(--current-line)"
+                    ariaLabel = 'three-dots-loading'     
+                />
+                <Text variant="h5" color="var(--white)" textAlign="center">
+                    Loading Weather Data...
+                </Text>
+            </Flex>
         )
     }
 

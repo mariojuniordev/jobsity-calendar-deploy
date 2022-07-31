@@ -50,11 +50,11 @@ export function Header() {
                     </Button>
 
                     <Flex gap="32px" mr="8px">
-                        <Button onClick={handlePrevMonth} backgroundColor="var(--background)">
+                        <Button borderRadius="50px" onClick={handlePrevMonth} backgroundColor="var(--background)">
                             <img src={ArrowLeft} alt="Arrow Left" height={20} width={20}/>
                         </Button>
 
-                        <Button onClick={handleNextMonth} backgroundColor="var(--background)">
+                        <Button borderRadius="50px" onClick={handleNextMonth} backgroundColor="var(--background)">
                             <img src={ArrowRight} alt="Arrow Right" height={20} width={20}/>
                         </Button>
                     </Flex>

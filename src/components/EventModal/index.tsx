@@ -29,6 +29,7 @@ export function EventModal() {
     const [description, setDescription] = useState(selectedEvent?.description ?? '');
     const [city, setCity] = useState(selectedEvent?.city ?? '');
     const [time, setTime] = useState(selectedEvent?.time ?? '');
+    const [turn, setTurn] = useState('AM');
     const [selectedLabel, setSelectedLabel] = useState(
         selectedEvent ? labelsColors.find((lbl) => lbl === selectedEvent.label) : labelsColors[0]
     );
@@ -43,7 +44,7 @@ export function EventModal() {
             day: daySelected.valueOf(),
             id: selectedEvent ? selectedEvent.id : Date.now(),
             city,
-            time: `${time} h`
+            time: `${time} ${time.includes('AM') || time.includes('PM') ? '' : turn}`
         }
 
         if (selectedEvent) {
@@ -152,9 +153,14 @@ export function EventModal() {
                                 size={20}
                                 onChange={(e) => setTime(e.target.value)}
                             />
+
+                            <select onChange={(e) => setTurn(e.target.value)}>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
                         </Flex>
 
-                        <Flex mt="16px" alignItems="center" gap="8px">
+                        <Flex justifyContent="space-between" width="100%" mt="16px" alignItems="center" gap="8px">
                             <Img src={BookmarkIcon} alt="bookmark" height="20px" width="20px" />
                             {labelsColors.map((label, index) =>
                                 <Button 

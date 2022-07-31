@@ -1,3 +1,4 @@
+import { SCREEN_SIZE } from './../../data/data';
 import styled from "styled-components";
 
 export const Grid = styled.div`

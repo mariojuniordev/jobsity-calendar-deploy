@@ -18,4 +18,3 @@ export const SCREEN_SIZE = {
     md: '1199px',
     lg: '1200px'
   };
-  
