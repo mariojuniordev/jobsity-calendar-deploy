@@ -22,10 +22,12 @@ export function Day({ day }: DayProps) {
     }, [savedEvents, day]);
 
     return (
-        <Container onClick={() => {
-            setDaySelected(day);
-            setShowEventModal(true);
-        }}>
+        <Container 
+            onClick={() => {
+                setDaySelected(day);
+                setShowEventModal(true);
+            }}
+        >
             <Flex flexDirection="column" alignItems="center" >
                 <Text mt="1px" color="var(--white)">
                     { day.format('ddd').toUpperCase() } 
@@ -34,8 +36,8 @@ export function Day({ day }: DayProps) {
                 <Flex
                     backgroundColor={isToday ? 'var(--green)': ''}
                     borderRadius="50px"
-                    height="35px"
-                    width="35px"
+                    height="30px"
+                    width="30px"
                     justifyContent="center"
                     alignItems="center"
                 >
@@ -65,6 +67,10 @@ export function Day({ day }: DayProps) {
                         fontWeight={'bold'}
                     >
                         { evt.title }
+                        <br/>
+                        { evt.time }
+                        <br/>
+                        { evt.city }
                     </Text>
                 )}
             </Flex>

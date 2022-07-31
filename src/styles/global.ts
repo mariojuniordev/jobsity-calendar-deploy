@@ -26,7 +26,7 @@ export default createGlobalStyle`
       font-size: 93.75%;
     }
     @media (max-width: ${SCREEN_SIZE.xs}) {
-      font-size: 87,5%;
+      font-size: 87.5%;
     }
   }
 

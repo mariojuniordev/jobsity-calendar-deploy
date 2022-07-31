@@ -4,5 +4,5 @@ export const Container = styled.div`
     background-color: var(--background);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 `

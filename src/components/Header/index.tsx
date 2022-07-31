@@ -33,7 +33,7 @@ export function Header() {
                     <Heading variant="h5" color="var(--white)">Calendar</Heading>
                 </Flex>
 
-                <Heading color="var(--white)" variant="h2">
+                <Heading color="var(--white)" variant="h2" textAlign="center">
                     { dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY") }
                 </Heading>
 

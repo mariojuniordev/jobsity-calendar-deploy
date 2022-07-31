@@ -7,8 +7,3 @@ export interface DayEvent {
     city?: string;
     time?: string;
 }
-
-export interface Labels {
-    label?: string;
-    checked?: boolean;
-}

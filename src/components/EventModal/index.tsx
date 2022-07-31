@@ -15,6 +15,7 @@ import { Flex } from "../UI/Flex";
 import { Img } from "../UI/Img";
 import { Text } from "../UI/Text";
 import { labelsColors } from "../../data/data";
+import MaskedInput from "react-text-mask";
 
 export function EventModal() {
     const {
@@ -42,7 +43,7 @@ export function EventModal() {
             day: daySelected.valueOf(),
             id: selectedEvent ? selectedEvent.id : Date.now(),
             city,
-            time
+            time: `${time} h`
         }
 
         if (selectedEvent) {
@@ -143,14 +144,12 @@ export function EventModal() {
                         <Flex alignItems="center">
                             <Img src={TimerIcon} mt="16px" mr="8px" alt="list" height="20px" width="20px"/>
                             
-                            <input 
-                                type="text" 
-                                name="time" 
-                                placeholder="Add Time" 
-                                inputMode="numeric"
-                                required
-                                maxLength={15}
+                            <MaskedInput
+                                mask={[ /[0-1]/, /[0-9]/, ':', /[0-5]/, /[0-9]/]}
+                                placeholder="00:00"
                                 value={time}
+                                name="time"
+                                size={20}
                                 onChange={(e) => setTime(e.target.value)}
                             />
                         </Flex>

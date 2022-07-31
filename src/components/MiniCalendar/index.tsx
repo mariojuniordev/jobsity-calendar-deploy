@@ -90,7 +90,9 @@ export function MiniCalendar() {
                                 height="18px"
                                 width="18px"
                             >
-                                <Text textAlign="center" fontSize="12px" color="var(--white)">{day.format('D')}</Text>
+                                <Text textAlign="center" fontSize="12px" color="var(--white)">
+                                    {day.format('D')}
+                                </Text>
                             </Button>
                         )}
                     </Fragment>
