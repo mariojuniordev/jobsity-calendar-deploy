@@ -16,6 +16,7 @@ import { Img } from "../UI/Img";
 import { Text } from "../UI/Text";
 import { labelsColors } from "../../data/data";
 import MaskedInput from "react-text-mask";
+import { schema } from './validations/eventModal';
 
 export function EventModal() {
     const {
@@ -34,8 +35,61 @@ export function EventModal() {
         selectedEvent ? labelsColors.find((lbl) => lbl === selectedEvent.label) : labelsColors[0]
     );
 
-    function handleSubmit(e: any) {
+    const [showInvalidTitleMessage, setShowInvalidTitleMessage] = useState(false);
+    const [showInvalidDescriptionMessage, setShowInvalidDescriptionMessage] = useState(false);
+    const [showInvalidCityMessage, setShowInvalidCityMessage] = useState(false);
+    const [showInvalidTimeMessage, setShowInvalidTimeMessage] = useState(false);
+
+    function validateFormFields() {
+        if (title === '') {
+            setShowInvalidTitleMessage(true);
+            return;
+        } else {
+            setShowInvalidTitleMessage(false);
+        }
+
+        if (description === '') {
+            setShowInvalidDescriptionMessage(true);
+            return;
+        } else {
+            setShowInvalidDescriptionMessage(false);
+        }
+
+        if (city === '') {
+            setShowInvalidCityMessage(true);
+            return;
+        } else {
+            setShowInvalidCityMessage(false);
+        }
+
+        if (time === '') {
+            setShowInvalidTimeMessage(true);
+            return;
+        } else {
+            setShowInvalidTimeMessage(false);
+        }
+    }
+
+    function formatTimeText(tm: string | undefined, trn: string | undefined) {
+        if (!tm?.includes('AM') && !tm?.includes('PM')) {
+            return `${tm} ${trn}`;
+        }
+
+        if (tm?.includes('AM') && trn === 'PM') {
+            return tm?.replace('AM', trn);
+        }
+        
+        if (tm?.includes('PM') && trn === 'AM') {
+            return tm?.replace('PM', trn);
+        }
+        
+        return tm;
+    }
+
+    async function handleSubmit(e: any) {
         e.preventDefault();
+
+        validateFormFields();
 
         const calendarEvent = {
             title,
@@ -44,8 +98,12 @@ export function EventModal() {
             day: daySelected.valueOf(),
             id: selectedEvent ? selectedEvent.id : Date.now(),
             city,
-            time: `${time} ${time.includes('AM') || time.includes('PM') ? '' : turn}`
+            time: formatTimeText(time, turn)
         }
+
+        const isValid = await schema.isValid(calendarEvent);
+
+        console.log(isValid)
 
         if (selectedEvent) {
             dispatchCalEvent({ type: 'update', payload: calendarEvent });
@@ -102,7 +160,12 @@ export function EventModal() {
                             maxLength={15}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                        />
+                        />       
+                        {showInvalidTitleMessage && 
+                            <Text mt="2px" variant="h5" color="var(--red)">
+                                Title is a required field        
+                            </Text> 
+                        }
 
                         <Flex mt="16px" alignItems="center">
                             <Img src={CalendarIcon} mr="8px" alt="clock" height="20px" width="20px"/>
@@ -125,7 +188,13 @@ export function EventModal() {
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             />
+                            
                         </Flex>
+                        {showInvalidDescriptionMessage && 
+                            <Text mt="2px" variant="h5" color="var(--red)">
+                                Description is a required field        
+                            </Text>                                 
+                        }
 
                         <Flex alignItems="center">
                             <Img src={BuildingsIcon} mt="16px" mr="8px" alt="list" height="20px" width="20px"/>
@@ -139,8 +208,13 @@ export function EventModal() {
                                 maxLength={15}
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                            />
+                            />                            
                         </Flex>
+                        {showInvalidCityMessage && 
+                            <Text mt="2px" variant="h5" color="var(--red)">
+                                City is a required field        
+                            </Text>                                
+                        }
 
                         <Flex alignItems="center">
                             <Img src={TimerIcon} mt="16px" mr="8px" alt="list" height="20px" width="20px"/>
@@ -157,8 +231,13 @@ export function EventModal() {
                             <select onChange={(e) => setTurn(e.target.value)}>
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
-                            </select>
+                            </select>                            
                         </Flex>
+                        {showInvalidTimeMessage && 
+                            <Text mt="2px" variant="h5" color="var(--red)">
+                                Time is a required field        
+                            </Text>                                 
+                        }
 
                         <Flex justifyContent="space-between" width="100%" mt="16px" alignItems="center" gap="8px">
                             <Img src={BookmarkIcon} alt="bookmark" height="20px" width="20px" />

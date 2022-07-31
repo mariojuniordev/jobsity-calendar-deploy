@@ -7,7 +7,7 @@ import { Text } from "../UI/Text";
 
 export function DayWeather({ city, date }: DayWeatherProps) {
     const [forecast, setForecast] = useState<WeatherData | null>(null);
-    console.log(`DATE: ${dayjs()}, CITY: ${city}`)
+    /* console.log(`DATE: ${dayjs()}, CITY: ${city}`) */
 
     useEffect(() => {
         if (date) {
