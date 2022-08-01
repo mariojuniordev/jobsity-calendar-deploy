@@ -151,6 +151,11 @@ export function EventModal() {
                             maxLength={15}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSubmit(e)
+                                }
+                            }}
                         />       
                         {showInvalidTitleMessage && 
                             <Text mt="2px" variant="h5" color="var(--red)">
@@ -178,6 +183,11 @@ export function EventModal() {
                                 maxLength={30}
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        handleSubmit(e)
+                                    }
+                                }}
                             />
                             
                         </Flex>
@@ -199,6 +209,11 @@ export function EventModal() {
                                 maxLength={20}
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        handleSubmit(e)
+                                    }
+                                }}
                             />                            
                         </Flex>
                         {showInvalidCityMessage && 
@@ -217,6 +232,11 @@ export function EventModal() {
                                 name="time"
                                 size={20}
                                 onChange={(e) => setTime(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        handleSubmit(e)
+                                    }
+                                }}
                             />
 
                             <select onChange={(e) => setTurn(e.target.value)}>

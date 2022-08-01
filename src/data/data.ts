@@ -18,3 +18,7 @@ export const SCREEN_SIZE = {
     md: '1199px',
     lg: '1200px'
   };
+
+// API KEYS
+
+export const VISUAL_CROSSING_API_KEY = 'WPLNJFV7NJXZF9AEXUP542M6N'

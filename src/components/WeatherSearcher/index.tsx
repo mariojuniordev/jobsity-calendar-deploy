@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Oval } from "react-loader-spinner";
+import { VISUAL_CROSSING_API_KEY } from "../../data/data";
 import { tempType, WeatherData } from "../../dtos/weather";
 import { apiIpInfo } from "../../services/apiIpInfo";
 import { apiVisualCrossing } from "../../services/apiVisualCrossing";
@@ -27,7 +28,7 @@ export function WeatherSearcher() {
 
     useEffect(() => {
         apiVisualCrossing.get(
-            `/${city}/next30days?unitGroup=metric&key=QJ54JSMNYUT76FMBQF773TUQM&contentType=json`
+            `/${city}/next30days?unitGroup=metric&key=${VISUAL_CROSSING_API_KEY}&contentType=json`
         ).then(response => setWeatherData(response?.data))
     }, [city]);
 

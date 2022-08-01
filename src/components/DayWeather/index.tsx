@@ -4,15 +4,16 @@ import { DayWeatherProps } from "../../dtos/dayWeather";
 import { WeatherData } from "../../dtos/weather";
 import { apiVisualCrossing } from "../../services/apiVisualCrossing";
 import { Text } from "../UI/Text";
+import { VISUAL_CROSSING_API_KEY } from '../../data/data';
 
 export function DayWeather({ city, date }: DayWeatherProps) {
     const [forecast, setForecast] = useState<WeatherData | null>(null);
 
     useEffect(() => {
         if (date) {
-            if (dayjs().format('YYYY-MM-DD') < date) {
+            if (dayjs().valueOf() <= dayjs(date).valueOf()) {
                 apiVisualCrossing.get(
-                    `/${city}/next30days?unitGroup=metric&key=QJ54JSMNYUT76FMBQF773TUQM&contentType=json`
+                    `/${city}/next30days?unitGroup=metric&key=${VISUAL_CROSSING_API_KEY}&contentType=json`
                 ).then(response => setForecast(response?.data))
             }
         }

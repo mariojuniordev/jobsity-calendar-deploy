@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { SCREEN_SIZE } from "../../data/data";
 
 export const Container = styled.div`
@@ -9,7 +9,7 @@ export const Container = styled.div`
     cursor: pointer;
     overflow: hidden;
 
-    :hover {
+    hover {
         background-color: var(--current-line);
     }
 
@@ -17,5 +17,5 @@ export const Container = styled.div`
         p {
             font-size: 12px;
         }
-    }
+    }        
 `

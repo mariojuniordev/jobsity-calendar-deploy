@@ -44,7 +44,7 @@ yarn start
 - Ability to edit reminders - including changing text, city, day and time;
 - Add a weather service call from MetaWeather, AccuWeather or VisualCrossing and get the weather forecast (e.g. Rain) for the date of the calendar reminder based on the city;
 
-<h4>2. Bonus Features</h3>
+<h4>2. Bonus Features</h4>
 
 - Expand the calendar to support more than the current month or year;
 
