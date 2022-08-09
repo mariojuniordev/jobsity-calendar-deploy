@@ -30,6 +30,16 @@ export default createGlobalStyle`
     }
   }
 
+  html::-webkit-scrollbar {
+    width: 5px;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: var(--gray-blue);
+  }
+  html::-webkit-scrollbar-track {
+    background-color: var(--current-line);
+  }
+
   body, input, textarea, button {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;

@@ -19,3 +19,21 @@ export const Container = styled.div`
         }
     }        
 `
+
+export const EventsContainer = styled.div`
+    max-height: 110px;
+    overflow-y: scroll;
+    margin-top: 0.5rem;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--gray-blue);
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: var(--current-line);
+    }
+`
