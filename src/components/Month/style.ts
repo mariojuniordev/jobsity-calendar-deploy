@@ -6,4 +6,8 @@ export const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-template-rows: repeat(5, minmax(0, 1fr));
+
+    @media(max-width: ${SCREEN_SIZE.xs}) {
+        display: none;
+    }
 `

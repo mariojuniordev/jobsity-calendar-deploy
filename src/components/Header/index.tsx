@@ -1,5 +1,5 @@
 import { Heading } from "../UI/Heading";
-import { CalendarHeader} from "./style";
+import { CalendarHeader, ArrowsContainer, TodayButton} from "./style";
 import CalendarIcon from "./assets/calendar.svg"
 import ArrowLeft from "./assets/arrow-left.svg";
 import ArrowRight from "./assets/arrow-right.svg";
@@ -38,26 +38,19 @@ export function Header() {
                 </Heading>
 
                 <Flex>
-                    <Button 
-                        onClick={handleReset}
-                        border="1px solid var(--cyan)" 
-                        backgroundColor="var(--background)"
-                        p="8px" 
-                        m="24px"
-                        borderRadius="5px"
-                    >
+                    <TodayButton onClick={handleReset}>
                         <Text color="var(--cyan)">Today</Text>
-                    </Button>
+                    </TodayButton>
 
-                    <Flex gap="32px" mr="8px">
-                        <Button borderRadius="50px" onClick={handlePrevMonth} backgroundColor="var(--background)">
-                            <img src={ArrowLeft} alt="Arrow Left" height={20} width={20}/>
-                        </Button>
+                    <ArrowsContainer>
+                            <Button borderRadius="50px" onClick={handlePrevMonth} backgroundColor="var(--background)">
+                                <img src={ArrowLeft} alt="Arrow Left" height={20} width={20}/>
+                            </Button>
 
-                        <Button borderRadius="50px" onClick={handleNextMonth} backgroundColor="var(--background)">
-                            <img src={ArrowRight} alt="Arrow Right" height={20} width={20}/>
-                        </Button>
-                    </Flex>
+                            <Button borderRadius="50px" onClick={handleNextMonth} backgroundColor="var(--background)">
+                                <img src={ArrowRight} alt="Arrow Right" height={20} width={20}/>
+                            </Button>
+                    </ArrowsContainer>
                 </Flex>
             </Flex>
         </CalendarHeader>

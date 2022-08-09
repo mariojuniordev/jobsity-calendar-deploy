@@ -23,11 +23,11 @@ export function MiniCalendar() {
         setCurrentMonthIdx(monthIndex)
     }, [monthIndex])
 
-    function handlePrevMonth() {
+    function handleMiniCalendarPrevMonth() {
         setCurrentMonthIdx(currentMonthIdx - 1);
     }
 
-    function handleNextMonth() {
+    function handleMiniCalendarNextMonth() {
         setCurrentMonthIdx(currentMonthIdx + 1);
     }
 
@@ -59,11 +59,11 @@ export function MiniCalendar() {
                     { dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY") }
                 </Text>
                 <Flex>
-                    <Button onClick={handlePrevMonth} ml="8px" backgroundColor="var(--background)">
+                    <Button onClick={handleMiniCalendarPrevMonth} ml="8px" backgroundColor="var(--background)">
                         <img height={20} width={20} src={SquareArrowLeft} alt={"previous_month"} title={"Previous month"} />
                     </Button>
 
-                    <Button onClick={handleNextMonth} backgroundColor="var(--background)">
+                    <Button onClick={handleMiniCalendarNextMonth} backgroundColor="var(--background)">
                         <img height={20} width={20} src={SquareArrowRight} alt={"next_month"} title={"Next month"} />
                     </Button>
                 </Flex>

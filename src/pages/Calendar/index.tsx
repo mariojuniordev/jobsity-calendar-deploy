@@ -26,7 +26,7 @@ export function Calendar() {
                 <Header/>
 
                 <Flex flex="1 1 0%">
-                    <Sidebar/>
+                    <Sidebar month={ currentMonth }/>
                     <Month month={ currentMonth }/>
                 </Flex>
             </Container>
