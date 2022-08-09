@@ -1,8 +1,26 @@
 import styled from "styled-components";
+import { SCREEN_SIZE } from "../../data/data";
 
 export const Container = styled.div`
     margin-top: 9px;
 `;
+
+export const DesktopArrowsContainer = styled.div`
+    display: flex;
+
+    @media(max-width: ${SCREEN_SIZE.xs}) {
+        display: none;
+    }
+`
+
+export const MobileArrowsContainer = styled.div`
+    display: none;
+
+    @media(max-width: ${SCREEN_SIZE.xs}) {
+        display: flex;
+        gap: 1rem;
+    }
+`
 
 export const Grid = styled.div`
     display: grid;
@@ -16,5 +34,9 @@ export const Grid = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    @media(max-width: ${SCREEN_SIZE.xs}) {
+        gap: 1rem;
     }
 `;

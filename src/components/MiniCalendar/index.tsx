@@ -4,7 +4,7 @@ import { getMonth } from "../../utils/day";
 import { Button } from "../UI/Button";
 import { Flex } from "../UI/Flex";
 import { Text } from "../UI/Text";
-import { Container, Grid } from "./style";
+import { Container, Grid, DesktopArrowsContainer, MobileArrowsContainer } from "./style";
 import SquareArrowLeft from "./assets/arrow-square-left.svg";
 import SquareArrowRight from "./assets/arrow-square-right.svg";
 import GlobalContext from "../../context/GlobalContext/GlobalContext";
@@ -13,7 +13,7 @@ export function MiniCalendar() {
     const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
     const [currentMonth, setCurrentMonth] = useState(getMonth());
 
-    const { monthIndex, setMiniCalendarMonth, setDaySelected, daySelected } = useContext(GlobalContext);
+    const { monthIndex, setMonthIndex, setMiniCalendarMonth, setDaySelected, daySelected } = useContext(GlobalContext);
 
     useEffect(() => {
         setCurrentMonth(getMonth(currentMonthIdx));
@@ -29,6 +29,14 @@ export function MiniCalendar() {
 
     function handleMiniCalendarNextMonth() {
         setCurrentMonthIdx(currentMonthIdx + 1);
+    }
+
+    function handlePrevMonthGlobally() {
+        setMonthIndex(monthIndex - 1)
+    }
+
+    function handleNextMonthGlobally() {
+        setMonthIndex(monthIndex + 1)
     }
 
     function getDayBackgroundColor(day: dayjs.Dayjs) {
@@ -54,11 +62,21 @@ export function MiniCalendar() {
 
     return (
         <Container>
-            <Flex justifyContent="space-between">
+            <Flex justifyContent="space-between" alignItems="center" mb="1rem">
                 <Text color="var(--white)">
                     { dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY") }
                 </Text>
-                <Flex>
+                <MobileArrowsContainer>
+                    <Button onClick={handlePrevMonthGlobally} ml="8px" backgroundColor="var(--background)">
+                        <img height={35} width={35} src={SquareArrowLeft} alt={"previous_month"} title={"Previous month"} />
+                    </Button>
+
+                    <Button onClick={handleNextMonthGlobally} backgroundColor="var(--background)">
+                        <img height={35} width={35} src={SquareArrowRight} alt={"next_month"} title={"Next month"} />
+                    </Button>
+                </MobileArrowsContainer>
+                
+                <DesktopArrowsContainer>
                     <Button onClick={handleMiniCalendarPrevMonth} ml="8px" backgroundColor="var(--background)">
                         <img height={20} width={20} src={SquareArrowLeft} alt={"previous_month"} title={"Previous month"} />
                     </Button>
@@ -66,7 +84,7 @@ export function MiniCalendar() {
                     <Button onClick={handleMiniCalendarNextMonth} backgroundColor="var(--background)">
                         <img height={20} width={20} src={SquareArrowRight} alt={"next_month"} title={"Next month"} />
                     </Button>
-                </Flex>
+                </DesktopArrowsContainer>
             </Flex>
 
             <Grid>
